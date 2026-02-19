@@ -5,6 +5,9 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 
 # Load the iris dataset
 iris = load_iris()
@@ -33,3 +36,12 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Model Accuracy:", accuracy)
 print("\nClassification Report:\n")
 print(classification_report(y_test, y_pred))
+
+# Combine features and target for visualization
+df = X.copy()
+df['species'] = y
+
+# Pairplot visualization
+sns.pairplot(df, hue='species')
+plt.title("Iris Dataset Pairplot")
+plt.show()
